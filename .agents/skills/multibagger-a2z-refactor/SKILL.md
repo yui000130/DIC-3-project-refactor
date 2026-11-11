@@ -6,118 +6,88 @@ description: >-
   the 2020 A-Z SOP (38 checkpoints) and A-F latest empirical evidence. Also triggered by /multibagger-a2z-refactor.
 ---
 
-# Multibagger Scout A–Z 專題設計重構與檢核 Workflow
+# Multibagger Scout A–Z 專題設計重構與防走歪 Workflow（對齊 `DESIGN.md` v0.6）
 
-本 Skill（Workflow）依據專案根目錄之規範檢核與研究證據文件，為 **Multibagger Scout（台股潛力股探勘 AI Agent）** 提供一套標準化的多步驟檢核與文件重構工作流程。
+本 Workflow 依據專案內四份核心檢核與證據文件，並完全對齊 `AIoT-FinalProject` 之 **`DESIGN.md`（v0.6，2026-11-10，共 13 節）**，明確定義**「哪裡要改、怎麼改、哪些設計邊界絕對不能改歪」**。
 
 ## 核心參考文件（Single Source of Truth）
 
-執行任何專題文件撰寫、重構或檢核前，請先讀取以下專案根目錄文件：
-
 1. **[專業摘要.md](../../../專業摘要.md)**：約 500 字的標準 A–F 結構專業摘要。
-2. **[專題設計規範檢核.md](../../../專題設計規範檢核.md)**：依《A2Z outline example》（2020 A-Z SOP）對 `DESIGN.md` 與提案進行的 26 字母（38 檢核點）逐章診斷與優先修改清單。
-3. **[Multibagger Scout A–F 最新研究證據補強.md](../../../Multibagger%20Scout%20A–F%20最新研究證據補強.md)**：2025–2026 最新學術論文與市場實證數據（Bessembinder 2026、SPIVA 2025、FAITH、JFE 2026、Alpha Arena、PoT 2026 等 15 項引用來源），標註 **Interesting / Innovation / Important** 三大賣點。
-4. **[MultibaggerScout_A2Z_A4.png](../../../MultibaggerScout_A2Z_A4.png)**：A–Z 系統性解析資訊圖表（含四大核心維度、八大模組架構、Algorithm 1 主流程、PA–PM 檢核、E1–E5 評估設計、優先修改 TOP 5）。
-5. **[修補範本與公式參考](./resources/templates.md)**：針對缺失與待補強項目（L、O、PJ、PM、T、W–Z、6.2）的結構化撰寫範本。
+2. **[專題設計規範檢核.md](../../../專題設計規範檢核.md)**：依《A2Z outline example》（2020 A-Z SOP）對 `DESIGN.md` v0.6 與提案進行的 38 檢核點診斷（目前符合度 **71%**：✓ 27 符合、▲ 7 待補強、❌ 4 缺失）。
+3. **[Multibagger Scout A–F 最新研究證據補強.md](../../../Multibagger%20Scout%20A–F%20最新研究證據補強.md)**：2025–2026 最新學術與市場實證數據（Bessembinder 2026、SPIVA 2025、FAITH、JFE 2026、Alpha Arena、PoT 2026 等 15 項來源）。
+4. **[MultibaggerScout_A2Z_A4.png](../../../MultibaggerScout_A2Z_A4.png)**：A–Z 系統性解析資訊圖表。
+5. **[修補範本與公式參考](./resources/templates.md)**：完全對齊 `DESIGN.md` v0.6 口徑的即用型段落、4×5 文獻矩陣、數學公式与 2330 台積電端到端案例範本。
 
 ---
 
-## 標準工作流程（Step-by-Step Workflow）
+## 🚨 第一部分：防走歪紅線（`DESIGN.md` v0.6 七大不可違反的設計邊界）
 
-當使用者要求「重構 `DESIGN.md` / 提案文件」、「補齊 A–Z 缺漏」或執行 `/multibagger-a2z-refactor` 時，請依序執行以下五個階段：
+在修改 `DESIGN.md`、提案或簡報時，**絕對不可違反**以下由 v0.1～v0.6 歷次收斂出的設計決定（避免引用外部文獻時把系統規格改歪）：
 
-### Stage 1：盤點目標文件與基準檢核（Audit）
-
-1. 確認目標文件位置（例如專案內的 `DESIGN.md`、`README.md` 或外部匯入之專題報告草稿）。
-2. 對照 [專題設計規範檢核.md](../../../專題設計規範檢核.md) 的 38 個檢核點（目前符合度 **71%**：✓ 27 符合、▲ 7 待補強、❌ 4 缺失）：
-   - **❌ 缺失項目（4 項）**：
-     - `L`（List the organization）：Introduction 結尾未交代全文各章節架構。
-     - `W`（What proposed）：缺少獨立 Conclusion 章節之研究挑戰與方法回顧。
-     - `X`（eXcel）：缺少獨立 Conclusion 章節之系統優勢與適用情境總結。
-     - `Y`（Yields）：缺少獨立 Conclusion 章節之量化數據與實證產出摘要。
-   - **▲ 待補強項目（7 項）**：
-     - `F`（Findings）：摘要與成果需由初步資料驗證升級至實驗表現數據（未有實驗數據前先引用外部文獻操作性發現與資料階段 4 項實證數據）。
-     - `O`（Organize）：Related Work 的文獻表需改為 **4×5 多維度歸納矩陣（SWOT / 方法構面）**。
-     - `PJ`（Jump to an example）：Proposed Scheme 需補一檔個股端到端（Step-by-step Run-through）Agent 決策與三輪核對實例。
-     - `PM`（Math proof）：需補齊「含息調整累積報酬（Adjusted Wealth Return）」與「Walk-forward 時間可得性約束」的嚴謹數學定義式。
-     - `T`（Tuning parameters）：需寫明訓練期超參數（LightGBM 樹深、學習率、kNN 之 `k` 值）搜索空間與選參標準（並重申測試期不調參）。
-     - `U` / `V`（Useful results / Verify effectiveness）：預留 E1–E5 對照 5% 隨機基準率之驗證表格。
-     - `6.2`（量化預期目標）：在資料階段已驗證數據（1,322 檔 0 失敗、7,754 公司×年份、1.7% 價格異常、8/8 台積電核對）基礎上，補齊模型與 Agent 評估的量化預期門檻。
-
----
-
-### Stage 2：植入 A–F 最新研究證據（Evidence Upgrade）
-
-將 [Multibagger Scout A–F 最新研究證據補強.md](../../../Multibagger%20Scout%20A–F%20最新研究證據補強.md) 的最新數據更新至 Abstract（A–F）與 Introduction（G–K）：
-
-1. **A（Attention Getter）**：
-   - 更新為 **Bessembinder (2026)** 百年美股實證（29,754 檔美股、91 兆美元淨財富中僅 **46 家公司**貢獻一半，較 2018 年版 89 家集中度翻倍；中位數報酬 −6.9%）。
-   - 更新台股開戶數為 **2026 年 10 月底 1,482.7 萬人**（30 歲以下占單月新增 56.3%）。
-   - 補充台股集中度案例：台積電占市值逾 **40%**；2025 年中小電子股平均報酬率 **171%**（約 9 成漲贏大盤電子股股本 < 80 億元）。
-2. **B（But — 三重陷阱）**：
-   - **事前辨識難**：**SPIVA 2025** 顯示 79% 主動式美股大型股基金落後 S&P 500，2021–2025 五年間無任何大型股基金維持前四分之一。
-   - **存活與前視偏差**：倖存者偏差每年高估 1–3%、30 年虛增 30–100%；`pitbacktest` 實測免費資料 41 檔下市美股中 0 檔正確；金融 LLM 存在訓練資料時間洩漏（Economics Letters 2025、ABFER 2026）。
-   - **LLM 數值幻覺**：**FAITH 基準**（arXiv 2508.05201）實測多變數計算失誤率達 10–20%+。
-3. **C & D（Cure & Development — PoT 分工與系統架構）**：
-   - 引用 **Lopez-Lira & Tang (JFE 2026)** 證實 LLM 具選股資訊價值，並對照 **Alpha Arena（38 個 AI 交易帳戶中 31 個虧損）** 說明「裸用 LLM 交易會虧損，必須搭配嚴謹資料平台與工具分工」。
-   - 引用 **Agentic RAG PoT（arXiv 2605.05409）** 證實程式與語言分工可**消除 88% 算術錯誤**。
-   - 對齊 **Yartseva (2025)** 十倍股七大因子（市值、P/B、營業利益率、ROA vs 資產擴張、FCF 殖利率、回檔買點、宏觀環境）。
-4. **E & F（Experiments & Findings）**：
-   - 明確列出 2013–2020 特徵視窗、2018–2020 三輪 Walk-forward、每年 4 月底決策時點（Point-in-Time），以及 FinMind 下市股涵蓋率實測說明。
+1. **母體範圍紅線（§5.2、§5.4）**：
+   - 系統研究母體**只有「臺灣證券交易所上市普通股」（4 位數、非 0 開頭代號，含後來下市者，排除 9 開頭存託憑證、ETF、特別股）**，且特徵日時須**已上市滿一年**、排除前一年日均成交值最低 **10%**。
+   - **上櫃、興櫃公司不納入**（特徵日前 90 天內有 $\ge 5$ 天開高低收不在升降單位上，即判定當時仍在興櫃並排除）。
+   - ⚠️ **注意**：[A–F 最新研究證據補強.md](../../../Multibagger%20Scout%20A–F%20最新研究證據補強.md) 中提到的「上櫃指數 +7.97%」或「中小電子股平均 +171%」**僅能用於 `§1 Problem` 的市場背景引題（Attention Getter）**，不可將系統母體改寫為包含上櫃或興櫃！
+2. **特徵與時間口徑紅線（§5.3、§5.5）**：
+   - 特徵日固定為**每年 4 月最後一個交易日**；財報與月營收**只用前一年度（12/31 年報與前一年 1–12 月營收合計）**，**不使用季報與當年度月營收**（列為 Future Work）。
+   - **固定 10 項特徵＋產業類別**（不可擅自增減）：
+     `① 市值`、`② FCF 殖利率`、`③ 帳面／市值`、`④ 本益比`、`⑤ ROE`、`⑥ 毛利率`、`⑦ 年營收成長率`、`⑧ 營業現金流／淨利`、`⑨ 負債比`、`⑩ 過去 12 個月含息報酬`、`＋ 產業類別`。
+   - ⚠️ **注意**：`ROA`、`EBITDA 利潤率`、`資產成長率`、`波動度`、`殖利率` 已於 v0.4 明確刪除（見 `§5.3` 第 208 行）。引用 Yartseva [1] 時，僅能作為文獻背景或對照規則，**嚴禁把 ROA 或資產成長率塞回 `§5.3` 特徵表**！
+3. **領域規則與知識庫紅線（§2.3、§7）**：
+   - 核心**只實作 2 條領域規則（`rules.py`）**：
+     1. `盈餘品質紅旗`：營業現金流／淨利偏低。
+     2. `估值過高`：本益比或帳面／市值落在全市場極端區間。
+   - **不實作動態 RAG 知識庫、不爬重大訊息**（改以 `knowledge/` 內每條規則的固定說明與文獻出處取代）；「資產成長快於 EBITDA 成長」與「景氣循環股」已移至 Future Work。
+4. **標記與含息報酬紅線（§5.4）**：
+   - 結束價採觀察期終點**最後 `20` 個交易日（約一個月）的含息財富平均**（v0.6 由 60 日改為 20 日；5 日與 60 日列為 E5 敏感度分析）。
+   - 含息報酬納入**除權息、減資（現金減資與彌補虧損減資）、股票分割／面額變更**三種公司行動因子；處理後單日變動仍超過當時漲跌幅限制（2015-06 前 7%、之後 10%）者標為「價格異常（報酬不可靠）」。
+   - **雙標記**：對照標記 `y_raw`（合格母體前 $\lceil 0.05 N \rceil$ 檔 = 1）與主要標記 `y_main`（`y_raw = 1` 且第 $y-1 \to y+4$ 年營收 5 年 CAGR $\ge 10\%$；加入 EPS 為延伸目標）。**`UNKNOWN` 絕不當成負例（`0`）**！
+5. **Agent 工具名稱與呼叫限制紅線（§3.1、§8）**：
+   - 7 個白名單工具名稱必須與 `§3.1` 逐字一致：`analyze_stock`、`get_features`、`score_model`、`find_cases`、`check_rules`、`follow_up`、`verify_report`。
+   - 每次請求最多 **`12` 次工具呼叫**、最多 **`3` 輪報告生成與數字核對**（逾限或失敗時退回 `template_report(T)` 或 `limited_report(E)`）。
+6. **模型分數與基準率用語紅線（§2.1、§6）**：
+   - 未完成機率校準前，一律稱為 **「模型分數」**，**嚴禁稱為「機率」或「上漲機率」**。
+   - 基準率必須嚴格區分：**報告中的對照基準 ＝ 訓練期主要標記的正例率**；**E1 評估時的基準 ＝ 同輪可評估母體的實際正例率**。
+7. **實作狀態誠實標示紅線（Header、§4、§9、§11）**：
+   - **已完成**：`verify_data.py`（11.1）、`collect_data.py`（11.2：1,322 檔、9,256 任務 0 失敗）、`demo_pipeline.py` + `app.py`（11.3：7,754 筆公司×年份、價格異常 1.7%、台積電 8/8 核對、8201 現金減資驗算）。
+   - **規劃中（待完成）**：`build_dataset.py`、`train.py`、`evaluate.py`、`rules.py`、`agent.py` 及模型實驗 E1–E5（11.4）。**在模型實驗實際跑出前，嚴禁編造 E1–E4 的實驗結果數據**！
 
 ---
 
-### Stage 3：執行 TOP 5 優先結構修補（Structural Refactoring）
+## 🗺️ 第二部分：`DESIGN.md` v0.6 逐節診斷與精準修改地圖（Section-by-Section Map）
 
-請讀取 [./resources/templates.md](./resources/templates.md) 的標準範本，依序修補以下 5 個核心區塊：
+下表列出 `DESIGN.md` v0.6 現有 13 個章節對應 A–Z SOP 的現況、缺口與精準修改位置：
 
-1. **補齊 `[L]` Introduction 章節結構交代**：在第一章結尾加入全文導覽段落（串接第二章 Related Work、第三章 Proposed Scheme、第四章 Experiments、第五章 Conclusion）。
-2. **重組 `[O]` Related Work 4×5 文獻歸納矩陣**：將文獻依四大流派（多倍股與長抱因子、台美股 ML 選股、金融 LLM 與多代理系統、金融偏誤與 PoT 數值核對）× 五大評估維度（代表文獻、核心方法、時間一致性/存活偏差控制、數值可靠性與可解釋性、本研究定位與突破）建立橫向對照表。
-3. **補齊 `[PM]` 嚴謹數學定義式**：在第三章（Proposed Scheme）寫明：
-   - 含息調整累積財富報酬（Adjusted Wealth Return, $R_{i, t \to t+5}^{\text{total}}$）與雙重標記 $Y_{i,t} \in \{0,1\}$ 公式。
-   - Point-in-Time 資訊集合約束（$\mathcal{I}_{i,t}$）與 Walk-forward 滾動切分公式（防止前視偏差 $t_k + 5\text{Y} \le t_{\text{eval}}$）。
-4. **補齊 `[PJ]` 單一案例端到端 Walk-through 與 `[T]` 超參數搜索空間**：
-   - 依據 Algorithm 1（01–16 行偽代碼）完整展示一檔個股從 `Query` $\rightarrow$ `Planner`（白名單 7 工具、$\le 12$ 次呼叫）$\rightarrow$ `Data & Model Tool`（LGBM + SHAP + kNN 歷史案例）$\rightarrow$ `Domain Rules`（2 條紅旗）$\rightarrow$ `Verifier`（$\le 3$ 輪數字核對迴圈）$\rightarrow$ `Output` 的實例走訪。
-   - 補齊訓練期超參數搜索空間表（LightGBM、Logistic Regression、kNN）與時間序列驗證選參原則。
-5. **增設 `[W–Z]` 第五章 Conclusion 與 `[6.2]` 量化預期目標**：
-   - 新增獨立第五章，涵蓋 `W. What proposed`、`X. eXcel`、`Y. Yields`、`Z. Zen (Future Work)`。
-
----
-
-### Stage 4：系統架構與技術規範一致性核對（Architecture & Spec Check）
-
-修改過程中必須確保所有技術細節與資訊圖表 [MultibaggerScout_A2Z_A4.png](../../../MultibaggerScout_A2Z_A4.png) 完全一致：
-
-- **八大模組架構（§3）**：
-  `① User（投資人、學生）` $\rightarrow$ `② Query（代號、日期）` $\rightarrow$ `③ Planner（LLM 拆解）` $\rightarrow$ `④ Data（FinMind）` $\rightarrow$ `⑤ Analytics（LGBM、SHAP）` $\rightarrow$ `⑥ Domain（2 條紅旗）` $\rightarrow$ `⑦ Decision（等級、證據）` $\rightarrow$ `⑧ Output（報告、追問）`
-  - **數字核對迴圈**：檢查報告數字是否等於工具輸出？一致 $\rightarrow$ `⑧ Output`；不一致 $\rightarrow$ 退回 `③ Planner` 重寫（最多 $\le 3$ 輪）。
-- **Algorithm 1（Agent 主流程 §8）**：
-  ```text
-  01 intent, stock <- parse_validate(q)
-  02 t <- latest_April_day(date)
-  04 plan <- allowed_tools(intent)
-  05 E <- execute(plan, as_of=t, max=12)
-  07 score, shap <- score_model(E, t)
-  08 cases <- find_cases(E, label<=t)
-  09 flags <- check_rules(E, thr)
-  11 for attempt in 1..3:
-  12   R <- compose(T); err <- verify(R, T)
-  14   if err = ∅: return R
-  16 return template_report(T)
-  ```
-- **評估設計（E1–E5）**：
-  - `E1 排序品質`：Precision@20/50、Recall@50、PR-AUC vs 隨機抽樣 1,000 次（基準率 5%）
-  - `E2 組合表現`：前 50 檔等權重 vs 0050；5 年含息報酬、最大回撤（MDD）
-  - `E3 特徵關聯`：三組 + 下市分層；跨輪 SHAP 穩定度 vs 基準率
-  - `E4 報告品質`：30 家樣本 Agent vs 直接問 LLM；報告數字正確率與覆蓋率
-  - `E5 敏感度分析（延伸）`：持有期 3/5 年、門檻 5%/10%/15%、終點視窗 5/20/60 日
+| `DESIGN.md` v0.6 章節 | 對應 A–Z 檢核點 | 目前狀態診斷 | 精準修改動作（怎麼改） |
+| :--- | :--- | :--- | :--- |
+| **Header & 新增 `§0 專業摘要`**<br/>（第 1–12 行） | **Abstract (`A–F`)** | ⚠️ 目前 `DESIGN.md` 開頭僅有狀態聲明，無完整 A–F 摘要段落 | 在第 11 行後新增 `## 0. Executive Summary（專業摘要）`，直接整合 [專業摘要.md](../../../專業摘要.md)（涵蓋 A–F 六要素與資料階段實證數字） |
+| **`## 1. Problem`**<br/>（第 13–33 行） | **Intro (`G–L`)** & **Related Work (`I, J, M, N, O`)** | ▲ `G, H, I, J` 篇幅過短且僅引 2023 舊數據<br/>▲ `O` 缺 4×5 文獻矩陣<br/>❌ `L` 缺全文結構交代 | 1. **[G/A 補強]**：在第 15 行補入 Bessembinder (2026) 百年 46 家占半數財富、2026/10 台股 1,482.7 萬開戶數與台積電占市值逾 40% 等數據。<br/>2. **[H/B 補強]**：在第 17–19 行三項痛點補入 SPIVA 2025（79% 落後、5 年 0 持續）、倖存者偏差虛增 30–100% 與 `pitbacktest`（0/41）、LLM 前視偏誤 [5][12][13] 及 FAITH 多變數計算失誤 10–20%+ [8]。<br/>3. **[C/D 補強]**：在第 31 行補入 JFE (2026) [9]、Alpha Arena（31/38 虧損）[10] 對比，以及 PoT 消除 88% 算術錯誤 [11]。<br/>4. **[O 補強]**：新增 `### 1.1 相關文獻回顧與 4×5 對照矩陣（Related Work）`。<br/>5. **[L 補齊]**：在 `§1` 結尾新增 `### 1.2 文件章節結構（Document Organization）` 交代全文 §2–§14 架構。 |
+| **`## 2. Requirements`**<br/>（第 35–87 行） | **`PA, PK, Z`** | ✓ 完整（F1–F6、非功能需求、核心 vs 延伸目標、Future Work 清單） | **保持原樣不更動**（確保範圍控制不走歪）。 |
+| **`## 3. Architecture`**<br/>（第 89–143 行） | **`PB, PC, PD, PE, PG, PH`** | ✓ 完整（8 大模組 Mermaid 圖、模組表、`3.1` 7 個白名單工具規格） | **保持原樣不更動**（工具名稱與 `max_calls=12`、3 輪核對已完全定型）。 |
+| **`## 4. Components`** & **`## 9. Mapping`** & **`## 10. How to Run`** | **`PE, PI`** | ✓ 完整（程式檔分工與執行指令） | **保持原樣不更動**。 |
+| **`## 5. Data`**<br/>（第 162–288 行） | **`PF, PM, S`** | ✓ `5.1–5.3`、`5.5` 完整<br/>▲ `5.4` 與 `5.6` 缺 **`[PM]` 嚴謹數學定義式** | 1. 在 `§5.4 標記定義`（第 220 行純文字公式處）補入 **`[PM-1]` 含息財富序列 $W_{i, t\to d}$、20 日平均終點報酬 $r_{i,t}$、減資換股率 $k$ 與雙標記 $y_{\text{raw}}, y_{\text{main}}$ 之分段數學定義式**。<br/>2. 在 `§5.6 每年滾動視窗與 walk-forward 切分`（第 286 行後）補入 **`[PM-2]` Point-in-Time 資訊集合 $\mathcal{I}_{i,t}$ 與訓練集標記揭曉約束 $a_{i,\tau} \le t_{\text{test}}^{(k)}$ 之數學定義式**。 |
+| **`## 6. AI / Analytics`**<br/>（第 290–304 行） | **`T` (Tuning)** | ▲ 第 286 行僅提「測試期不調參」，缺 **`[T]` 訓練期超參數搜索空間與預設規格** | 在 `§6` 結尾新增 `### 6.1 訓練期超參數設定與調校規範（Tuning Parameters）`，列出 LightGBM、邏輯迴歸與 kNN 的固定預設值與訓練期內部選參空間表。 |
+| **`## 7. Domain Knowledge`**<br/>（第 306–317 行） | **`PF, PH`** | ✓ 完整（2 條紅旗：盈餘品質、估值過高） | **保持原樣不更動**。 |
+| **`## 8. Algorithm`**<br/>（第 319–377 行） | **`PI, PJ`** | ✓ `Algorithm 1 & 2` 偽代碼完整<br/>▲ 缺 **`[PJ]` 單一案例端到端走訪（Walk-through）** | 在 `Algorithm 1` 與 `Algorithm 2` 之間新增 `### 8.1 個股端到端執行範例（Step-by-Step Run-Through：以 2330 台積電為例）`，完整展示 Lines 01–16 與 7 個工具的資料流與 3 輪數字核對過程。 |
+| **`## 11. Results`**<br/>（第 438–523 行） | **`E, F, Q, R, U, V, [6.2]`** | ✓ `11.1–11.3` 資料階段成果極完整<br/>▲ `11.4` 缺 **`[6.2]` 量化預期目標表** | 在 `§11.4 模型實驗（待完成）` 結尾新增 **`量化預期目標與驗證判準（Quantitative Targets）`**，明確定義 E1–E4 在正式實驗完成時的成功判準（且清楚標示為「待驗證目標」而非已實現結果）。 |
+| **`## 12. Limitations`**<br/>（第 525–548 行） | **`H, J, W`** | ✓ 完整（16 項具體限制與處理方式） | **保持原樣不更動**。 |
+| **新增 `## 13. Conclusion`**<br/>（原第 549 行處） | **`W, X, Y, Z`** | ❌ **目前完全缺漏獨立結論章節** | 在 `## 12. Limitations` 後新增 `## 13. Conclusion & Future Work`，包含 `13.1 W. 研究挑戰回顧與方法總結`、`13.2 X. 系統優勢與適用情境`、`13.3 Y. 資料層實證產出與評估目標摘要`、`13.4 Z. 結語與未來展望`（原 Change Log 順延為 `## 14. Change Log`）。 |
+| **`參考文獻`**<br/>（第 566–572 行） | **`I, M, A–F`** | ▲ 目前僅有 `[1]–[5]` | 保留原 `[1]–[5]` 編號不變（維持全文向下相容），在後方擴充 `[6]–[15]` 納入 2025–2026 最新研究與市場統計文獻。 |
 
 ---
 
-### Stage 5：自動檢核與驗證（Verification）
+## 🛠️ 第三部分：標準執行步驟（Step-by-Step Execution Procedure）
 
-完成文件撰寫或修改後，執行以下驗證步驟：
+當使用者要求「依此 Workflow 檢核或修改 `DESIGN.md` / 提案報告」時，請嚴格依以下五步執行：
 
-1. **A–Z 26 字母完整性檢查**：逐一確認 `A–F`（Abstract）、`G–L`（Introduction）、`M–O`（Related Work）、`PA–PM`（Proposed Scheme）、`Q–V`（Experiments）、`W–Z`（Conclusion）均已具備對應章節與內容。
-2. **數據與文獻口徑檢查**：確認所有引用數據皆來自 [Multibagger Scout A–F 最新研究證據補強.md](../../../Multibagger%20Scout%20A–F%20最新研究證據補強.md) 或資料層實測數據（1,322 檔、7,754 公司×年份、1.7% 價格異常、8/8 台積電核對），無未經證實之虛構實驗數據。
-3. **合規聲明檢查**：確認文件包含「排序品質能否優於 5% 隨機基準率為待驗證假設；本系統僅供學術與投資研究輔助，不構成投資建議」之誠實聲明。
+1. **Step 1 — 讀取與紅線檢查**：
+   - 讀取目標文件（如 `DESIGN.md`）與 [./resources/templates.md](./resources/templates.md)。
+   - 檢查第一部分的 **7 大防走歪紅線**，確認不會動到既有已完成的資料層數字（1,322 檔、7,754 筆、1.7%、8/8 核對）、10 項特徵、2 條紅旗與 7 個工具名稱。
+2. **Step 2 — 補齊 `§0 專業摘要`、`§1 Problem`（含 A–F 新證據、`[O]` 4×5 矩陣、`[L]` 章節交代）與 `參考文獻 [6]–[15]`**：
+   - 依照 [./resources/templates.md](./resources/templates.md) 的對應區塊插入或更新，並保留原 `[1]–[5]` 引用編號不變。
+3. **Step 3 — 補齊 `§5.4 / §5.6 [PM]` 數學定義式、`§6.1 [T]` 超參數表與 `§8.1 [PJ]` 台積電端到端案例走訪**：
+   - 公式變數與偽代碼行號（01–16）必須與 `§5.4`、`§8 Algorithm 1 & 2` 完全對齊。
+4. **Step 4 — 補齊 `§11.4 [6.2]` 量化預期目標與 `§13 [W–Z]` 結論章節**：
+   - 更新 `Change Log`（記錄本次依 A–Z SOP 補強之項目），並確認所有規劃中實驗仍誠實標示為「待完成／待驗證假設」。
+5. **Step 5 — 最終 38 點 A–Z 檢核表驗收**：
+   - 對照 [MultibaggerScout_A2Z_A4.png](../../../MultibaggerScout_A2Z_A4.png) 的 TOP 5 修改清單（`[L]`、`[W–Y]`、`[T]`、`[PJ]`、`[6.2]` + `[O]`、`[PM]`），逐項確認 100% 補齊且零紅線違規。
