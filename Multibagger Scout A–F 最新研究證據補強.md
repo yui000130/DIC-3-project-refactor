@@ -36,7 +36,7 @@ Bessembinder 最新論文《One Hundred Years in the U.S. Stock Markets》（SSR
 
   - 2026 年更極端：台新投信統計今年漲幅超越大盤的電子股中約 **9 成股本在 80 億元以下**，中小電子股平均報酬率達 **171%**（[天下雜誌](https://www.cw.com.tw/article/5143275)）。
 
-> **專題運用**：A3 直接將「報酬集中」從美股研究連結到台股現場，讓 Precision@50 的評估設計有本地實證——Important。（⚠️ **對齊 `DESIGN.md` v0.6 注意事項**：此處上櫃指數與中小型電子股數據僅作 `§1 Problem` 市場背景引題；系統正式研究母體嚴格限定為「證交所上市普通股」，不含上櫃與興櫃。）
+> **專題運用**：A3 直接將「報酬集中」從美股研究連結到台股現場，讓 Precision@50 的評估設計有本地實證——Important。
 
 ## B. But（挑戰與痛點）
 
@@ -112,7 +112,7 @@ Bessembinder 最新論文《One Hundred Years in the U.S. Stock Markets》（SSR
 
 7.  宏觀：升息周期需提高篩選標準。
 
-> **專題運用**：與 `DESIGN.md` v0.6 的特徵規格（規模市值、FCF 殖利率、帳面／市值、本益比、ROE、毛利率、過去 12 個月含息報酬等 10 項特徵）核心構面高度呼應——Interesting。（⚠️ **對齊 `DESIGN.md` v0.6 注意事項**：v0.4 已刪除 ROA、EBITDA 利潤率與資產成長率，引用時請保持 `§5.3` 的 10 項特徵口徑不變。）
+> **專題運用**：與你們的特徵規格（FCF 殖利率、ROA、P/B）逐項對得上，且第 6 點（回檔後進場）可作為候選新特徵或對照因子——Interesting。
 
 ### D2. 台股機器學習選股：本地文獻持續累積
 
@@ -170,9 +170,9 @@ Bessembinder 最新論文《One Hundred Years in the U.S. Stock Markets》（SSR
 
 4.  FAITH: A Framework for Assessing Intrinsic Tabular Hallucinations in Finance (arXiv 2508.05201). [https://ar5iv.labs.arxiv.org/html/2508.05201](https://ar5iv.labs.arxiv.org/html/2508.05201)
 
-5.  Gao, Z., Jiang, W., & Yan, Y. (2025). A Test of Lookahead Bias in LLM Forecasts. ABFER 2026. [https://abfer.org/media/abfer-events-2026/annual-conference/papers-tech-ai/AC26P10024\_A-Test-of-Lookahead-Bias-in-LLM-Forecasts.pdf](https://abfer.org/media/abfer-events-2026/annual-conference/papers-tech-ai/AC26P10024_A-Test-of-Lookahead-Bias-in-LLM-Forecasts.pdf)
-
-6.  Didisheim, A., Fraschini, M., & Somoza, L. (2025). AI's predictable memory in financial analysis. *Economics Letters*, 256. [https://econpapers.repec.org/article/eeeecolet/v\_3a256\_3ay\_3a2025\_3ai\_3ac\_3as0165176525004392.htm](https://econpapers.repec.org/article/eeeecolet/v_3a256_3ay_3a2025_3ai_3ac_3as0165176525004392.htm)
+| 5.  Gao | Z. | Jiang | W. | & Yan | Y. (2025). A Test of Lookahead Bias in LLM Forecasts. ABFER 2026. [https://abfer.org/media/abfer-events-2026/annual-conference/papers-tech-ai/AC26P10024\_A-Test-of-Lookahead-Bias-in-LLM-Forecasts.pdf](https://abfer.org/media/abfer-events-2026/annual-conference/papers-tech-ai/AC26P10024_A-Test-of-Lookahead-Bias-in-LLM-Forecasts.pdf) |  |
+| --- | --- | --- | --- | --- | --- | --- |
+| 6.  Didisheim | A. | Fraschini | M. | & Somoza | L. (2025). AI's predictable memory in financial analysis. *Economics Letters* | 256. [https://econpapers.repec.org/article/eeeecolet/v\_3a256\_3ay\_3a2025\_3ai\_3ac\_3as0165176525004392.htm](https://econpapers.repec.org/article/eeeecolet/v_3a256_3ay_3a2025_3ai_3ac_3as0165176525004392.htm) |
 
 7.  Trading Agent Stack (2026). Alpha Arena results: 31 of 38 AI accounts lost money. [https://tradingagentstack.com/alpha-arena-results/](https://tradingagentstack.com/alpha-arena-results/)
 

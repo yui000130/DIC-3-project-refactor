@@ -147,3 +147,4 @@ if __name__ == "__main__":
         print("用法: python .agents/skills/multibagger-a2z-refactor/scripts/verify_design_a2z.py <path/to/DESIGN.md>")
         sys.exit(2)
     sys.exit(check_design_file(Path(sys.argv[1])))
+

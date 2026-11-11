@@ -18,6 +18,7 @@ description: >-
 4. **[MultibaggerScout_A2Z_A4.png](../../../MultibaggerScout_A2Z_A4.png)**：A–Z 系統性解析資訊圖表。
 5. **[修補範本與公式參考](./resources/templates.md)**：完全對齊 `DESIGN.md` v0.6 口徑的即用型段落、4×5 文獻矩陣、數學公式與 2330 台積電端到端案例範本。
 6. **[自動檢核腳本](./scripts/verify_design_a2z.py)**：一鍵檢查目標 `DESIGN.md` 是否同時通過「7 大防走歪紅線」與「8 大 A–Z 缺漏修補項目」。
+7. **[OpenSpec 規格與重構文稿庫](../../../openspec/AGENTS.md)**：包含 [project.md](../../../openspec/project.md)（A–F、5 Cores、3 Trade-offs、10 Details）、[spec.md](../../../openspec/specs/multibagger-scout/spec.md)、[introduction_refactor.md](../../../openspec/changes/a2z-proposal-refactor/introduction_refactor.md)（G–L 完整重構版）與 [related_work_refactor.md](../../../openspec/changes/a2z-proposal-refactor/related_work_refactor.md)（M–O 完整重構版）。
 
 ---
 
