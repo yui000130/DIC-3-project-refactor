@@ -16,7 +16,8 @@ description: >-
 2. **[專題設計規範檢核.md](../../../專題設計規範檢核.md)**：依《A2Z outline example》（2020 A-Z SOP）對 `DESIGN.md` v0.6 與提案進行的 38 檢核點診斷（目前符合度 **71%**：✓ 27 符合、▲ 7 待補強、❌ 4 缺失）。
 3. **[Multibagger Scout A–F 最新研究證據補強.md](../../../Multibagger%20Scout%20A–F%20最新研究證據補強.md)**：2025–2026 最新學術與市場實證數據（Bessembinder 2026、SPIVA 2025、FAITH、JFE 2026、Alpha Arena、PoT 2026 等 15 項來源）。
 4. **[MultibaggerScout_A2Z_A4.png](../../../MultibaggerScout_A2Z_A4.png)**：A–Z 系統性解析資訊圖表。
-5. **[修補範本與公式參考](./resources/templates.md)**：完全對齊 `DESIGN.md` v0.6 口徑的即用型段落、4×5 文獻矩陣、數學公式与 2330 台積電端到端案例範本。
+5. **[修補範本與公式參考](./resources/templates.md)**：完全對齊 `DESIGN.md` v0.6 口徑的即用型段落、4×5 文獻矩陣、數學公式與 2330 台積電端到端案例範本。
+6. **[自動檢核腳本](./scripts/verify_design_a2z.py)**：一鍵檢查目標 `DESIGN.md` 是否同時通過「7 大防走歪紅線」與「8 大 A–Z 缺漏修補項目」。
 
 ---
 
@@ -89,5 +90,7 @@ description: >-
    - 公式變數與偽代碼行號（01–16）必須與 `§5.4`、`§8 Algorithm 1 & 2` 完全對齊。
 4. **Step 4 — 補齊 `§11.4 [6.2]` 量化預期目標與 `§13 [W–Z]` 結論章節**：
    - 更新 `Change Log`（記錄本次依 A–Z SOP 補強之項目），並確認所有規劃中實驗仍誠實標示為「待完成／待驗證假設」。
-5. **Step 5 — 最終 38 點 A–Z 檢核表驗收**：
-   - 對照 [MultibaggerScout_A2Z_A4.png](../../../MultibaggerScout_A2Z_A4.png) 的 TOP 5 修改清單（`[L]`、`[W–Y]`、`[T]`、`[PJ]`、`[6.2]` + `[O]`、`[PM]`），逐項確認 100% 補齊且零紅線違規。
+5. **Step 5 — 最終 38 點 A–Z 檢核表與腳本自動驗收**：
+   - 執行自動檢核腳本驗證修改後的 `DESIGN.md`：
+     `python .agents/skills/multibagger-a2z-refactor/scripts/verify_design_a2z.py <path/to/DESIGN.md>`
+   - 對照 [MultibaggerScout_A2Z_A4.png](../../../MultibaggerScout_A2Z_A4.png) 的 TOP 5 修改清單（`[L]`、`[W–Y]`、`[T]`、`[PJ]`、`[6.2]` + `[O]`、`[PM]`），確認紅線通過率 `7/7` 且 A–Z 補強完成度 `8/8`。
